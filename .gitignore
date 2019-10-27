@@ -1,3 +1,15 @@
 *.tmp
 build/
 .gradle/
+
+*.tmp
+build/
+.gradle/
+test
+bin/
+.classpath
+.project
+.settings/
+.vscode/
+
+/.nb-gradle/

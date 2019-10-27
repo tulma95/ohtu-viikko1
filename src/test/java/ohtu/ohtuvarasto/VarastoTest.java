@@ -9,6 +9,10 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import static org.junit.Assert.*;
+import static org.hamcrest.CoreMatchers.*;
+import org.junit.Before;
+import org.junit.Test;
 
 public class VarastoTest {
 
@@ -18,6 +22,30 @@ public class VarastoTest {
     @Before
     public void setUp() {
         varasto = new Varasto(10);
+    }
+
+    @Test
+    public void konstruktoriToimii() {
+        varasto = new Varasto(20, 20);
+        assertThat(varasto.getSaldo(), is(20.0));
+    }
+
+    @Test
+    public void negatiivinenTilavuusOnNolla() {
+        varasto = new Varasto(-20);
+        assertThat(varasto.getTilavuus(), is(0.0));
+    }
+
+    @Test
+    public void negatiivinenTilavuusOnNolla2() {
+        varasto = new Varasto(-20, 20);
+        assertThat(varasto.getTilavuus(), is(0.0));
+    }
+
+    @Test
+    public void negatiivinenSaldoOnNolla() {
+        varasto = new Varasto(20, -10);
+        assertThat(varasto.getSaldo(), is(0.0));
     }
 
     @Test
@@ -39,6 +67,12 @@ public class VarastoTest {
     }
 
     @Test
+    public void saldoaEiVoiLisataLiikaa() {
+        varasto.lisaaVarastoon(20);
+        assertThat(varasto.getSaldo(), is(10.0));
+    }
+
+    @Test
     public void lisaysLisaaPienentaaVapaataTilaa() {
         varasto.lisaaVarastoon(8);
 
@@ -53,6 +87,28 @@ public class VarastoTest {
         double saatuMaara = varasto.otaVarastosta(2);
 
         assertEquals(2, saatuMaara, vertailuTarkkuus);
+    }
+
+    @Test
+    public void kaikenOttamienSaldoOnNolla() {
+        varasto.otaVarastosta(20.0);
+        assertThat(varasto.getSaldo(), is(0.0));
+    }
+
+    @Test
+    public void negatiivisenOttaminenEiToimi() {
+        assertThat(varasto.otaVarastosta(-20), is(0.0));
+    }
+    
+    @Test
+    public void negatiivisenLisaaminenEiToimi() {
+        varasto.lisaaVarastoon(-20);
+        assertThat(varasto.getSaldo(), is(0.0));
+    }
+    
+    @Test
+    public void ToStringTest() {
+        assertThat(varasto.toString(), is("saldo = 0.0, vielä tilaa 10.0"));
     }
 
     @Test

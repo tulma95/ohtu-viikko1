@@ -108,7 +108,7 @@ public class VarastoTest {
     
     @Test
     public void ToStringTest() {
-        assertThat(varasto.toString(), is("saldo = 0.0, vielä tilaa 10.0"));
+        assertThat(varasto.toString(), is("ssaldo = 0.0, vielä tilaa 10.0"));
     }
 
     @Test

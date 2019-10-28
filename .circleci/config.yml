@@ -40,7 +40,9 @@ jobs:
 
       # run tests!
       - run: gradle test
-
+      - run:
+          command: |
+            sudo chmod +x ./gradlew
       - run: ./gradlew check
       - run: ./gradlew jacocoTestReport
       - run: bash <(curl -s https://codecov.io/bash)

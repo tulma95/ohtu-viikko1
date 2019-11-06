@@ -99,13 +99,13 @@ public class VarastoTest {
     public void negatiivisenOttaminenEiToimi() {
         assertThat(varasto.otaVarastosta(-20), is(0.0));
     }
-    
+
     @Test
     public void negatiivisenLisaaminenEiToimi() {
         varasto.lisaaVarastoon(-20);
         assertThat(varasto.getSaldo(), is(0.0));
     }
-    
+
     @Test
     public void ToStringTest() {
         assertThat(varasto.toString(), is("saldo = 0.0, vielä tilaa 10.0"));

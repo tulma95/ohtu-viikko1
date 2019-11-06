@@ -14,17 +14,11 @@ public class Varasto {
             this.tilavuus = 0.0; // => käyttökelvoton varasto
         }
         saldo = 0; // oletus: varasto on tyhjä
-
-        for (int i = 0; i < 10; i++) {
-            for (int j = 0; j < 10; j++) {
-
-            }
-        }
-
     }
 
     public Varasto(double tilavuus, double alkuSaldo) { // kuormitetaan
         this.tilavuus = tarkistaVirheellisyys(tilavuus);
+
         if (alkuSaldo < 0.0) {
             this.saldo = 0.0;
         } else if (alkuSaldo <= tilavuus) { // mahtuu
